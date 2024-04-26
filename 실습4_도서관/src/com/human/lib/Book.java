@@ -7,7 +7,7 @@ import lombok.ToString;
 
 @Data
 @AllArgsConstructor
-@ToString
+
 
 
 public class Book {
@@ -18,7 +18,8 @@ public class Book {
 	private boolean rent; //true 대여중 ,false 대여가능 
 	
 	
-	public String toString(Object obj) {
+	@Override
+	public String toString() {
 		String rentStr = rent ? "대여중" : "대여가능";
 		return title + "/"+author +"/"+price+"/"+rentStr;
 	}
