@@ -5,6 +5,7 @@ import java.util.List;
 
 public class LibraryList {
 	public static void main(String[] args) {
+		
 		LibraryList lib = new LibraryList();
 		System.out.println(lib);
 		lib.rentBook(0);
@@ -60,7 +61,7 @@ public class LibraryList {
 		String str = "";
 		//리스트도 인덱스로 참조 하므로 인덱스값도 함께 출력 합니다.
 		for(int i=0;i<list.size();i++) {
-			str += i +" "+ list.get(i)+"\n";
+			str += i +" "+ list.get(i).info()+"\n";
 		}
 		return str;
 	}
