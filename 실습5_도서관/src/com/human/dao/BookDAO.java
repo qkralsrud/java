@@ -20,6 +20,7 @@ public class BookDAO {
 	
 	// 접근제한자 반환타입 이름(매개변수타입 매개변수이름){}
 	
+	
 	/**
 	 * 도서목록을 반환 합니다.
 	 * @return
@@ -69,7 +70,8 @@ public class BookDAO {
 			Statement stmt = con.createStatement();
 			res = stmt.executeUpdate(sql);
 			*/
-			String sql = "INSERT INTO BOOK VALUES (SEQ_BOOK_NO.NEXTVAL, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO BOOK (NO,TITLE,AUTHOR,PUBLISHER,PRICE,PUB_DATE)"
+						+ " VALUES (SEQ_BOOK_NO.NEXTVAL, ?, ?, ?, ?, ?)";
 			// Statement와 prepareStatement의 가장 큰 차이점은 동적인 쿼리를 생성하는 부분
 			// 쿼리문장을 어디서 세팅 해주는지가 다름!!!!!!!
 			PreparedStatement pstmt = con.prepareStatement(sql);
@@ -131,11 +133,91 @@ public class BookDAO {
 	
 	public static void main(String[] args) {
 		BookDAO dao = new BookDAO();
-		BookVO vo = new BookVO(0, "타이틀1", "작가1", "중앙", "15000", "2020-10-25");
-		int res = dao.insertBook(vo);
-		System.out.println(res + "건 처리 되었습니다.");
+		System.out.println( dao.updateRentYN(1, "Y") );
+		
+//		BookVO vo = new BookVO(0, "타이틀1", "작가1", "중앙", "15000", "2020-10-25");
+//		int res = dao.insertBook(vo);
+//		System.out.println(res + "건 처리 되었습니다.");
 		
 	}
+
+	public String getRentYn(int no) {
+		String res = null;
+		
+		try {
+			//Connection : DB연결
+			Connection con = ConnectionUtil.getConnection();
+			// Sql : 실행할 쿼리문장 작성
+			String sql = "select rent_yn from book where no=?";
+			//PreparedStatement : 쿼리르 실행하기 위한 객체 생성
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			//파라메터 세팅 : 동적 쿼리 문장 완성
+			pstmt.setInt(1, no);
+			//쿼리 실행 : 실행후 결과집합을 반환
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				res = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	public int updateRentYN(int no, String rentYN) {
+		int res = 0;
+		// rentyn컬럼을 y로 업데이트
+		Connection con = ConnectionUtil.getConnection();
+		String sql = "update book set rent_yn=? where no=?";
+		try {
+			con.setAutoCommit(false);
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rentYN);
+			pstmt.setInt(2, no);
+			
+			res = pstmt.executeUpdate();
+
+			
+			/* 트랜젝션 처리를 위해 사용되는 메서드
+			con.setAutoCommit(false);
+			con.commit();
+			con.rollback();
+			*/
+			con.rollback();
+			
+			ConnectionUtil.close(con, pstmt);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		
+		
+		return res;
+	}
+	
+	public int insertRent(String id, int no) {
+		int res = 0;
+		String sql = "insert into rent (rentno, no, id, rent_date) \r\n"
+						+ "        values (rent_rentno.nextval, ?, ?, sysdate)";
+		
+		Connection con = ConnectionUtil.getConnection();
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			pstmt.setString(2, id);
+			
+			res = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
 }
 
 
