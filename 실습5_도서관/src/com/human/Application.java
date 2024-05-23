@@ -146,6 +146,13 @@ public class Application {
 					
 					boolean rent = bookService.rent(no, loginMember.getId());
 					System.out.println("rent");
+				} else if (menu ==2) {
+					System.out.println("도서번호를 입력 해주세요");
+					int no = scanner.nextInt();
+					scanner.nextLine();
+					boolean resReturn = bookService.returnBook(no);
+
+					
 				}
 				
 				

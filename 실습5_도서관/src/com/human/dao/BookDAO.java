@@ -133,7 +133,7 @@ public class BookDAO {
 	
 	public static void main(String[] args) {
 		BookDAO dao = new BookDAO();
-		System.out.println( dao.updateRentYN(1, "Y") );
+		//System.out.println( dao.updateRentYN(1, "Y") );
 		
 //		BookVO vo = new BookVO(0, "타이틀1", "작가1", "중앙", "15000", "2020-10-25");
 //		int res = dao.insertBook(vo);
@@ -167,16 +167,19 @@ public class BookDAO {
 		return res;
 	}
 
-	public int updateRentYN(int no, String rentYN) {
+	public int updateRentYN(int no, String rentYN, int rentNo, Connection con) {
 		int res = 0;
 		// rentyn컬럼을 y로 업데이트
-		Connection con = ConnectionUtil.getConnection();
-		String sql = "update book set rent_yn=? where no=?";
+		
+		// 트랜젝션 처리를 위해 외부에서 Connection을 받아 옵니다.
+		//Connection con = ConnectionUtil.getConnection();
+		String sql = "update book set rent_yn=?, rent_no=? where no=?";
 		try {
 			con.setAutoCommit(false);
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, rentYN);
-			pstmt.setInt(2, no);
+			pstmt.setInt(2, rentNo);
+			pstmt.setInt(3, no);
 			
 			res = pstmt.executeUpdate();
 
@@ -186,9 +189,8 @@ public class BookDAO {
 			con.commit();
 			con.rollback();
 			*/
-			con.rollback();
-			
-			ConnectionUtil.close(con, pstmt);
+
+			//ConnectionUtil.close(con, pstmt);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -199,18 +201,66 @@ public class BookDAO {
 		return res;
 	}
 	
-	public int insertRent(String id, int no) {
+	// 쿼리에 오류를 발생 시켜서 테스트를 진행
+	public int insertRent(String id, int no, int rentno, Connection con) {
 		int res = 0;
 		String sql = "insert into rent (rentno, no, id, rent_date) \r\n"
-						+ "        values (rent_rentno.nextval, ?, ?, sysdate)";
+						+ "        values (?, ?, ?, sysdate)";
 		
-		Connection con = ConnectionUtil.getConnection();
+		//Connection con = ConnectionUtil.getConnection();
 		try {
+			
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, no);
-			pstmt.setString(2, id);
+			pstmt.setInt(1, rentno);
+			pstmt.setInt(2, no);
+			pstmt.setString(3, id);
 			
 			res = pstmt.executeUpdate();
+			
+			//ConnectionUtil.close(con, pstmt);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	/**
+	 * 새로운 대여번호를 생성하여 반환 합니다.
+	 * @return
+	 */
+	public int selectRentNo() {
+		int rentNo = 0;
+		Connection con = ConnectionUtil.getConnection();
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("select rent_rentno.nextval from dual");
+			
+			if(rs.next()) {
+				rentNo = rs.getInt(1);
+			}
+			
+			ConnectionUtil.close(con, stmt, rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return rentNo;
+	}
+
+	public int updateReturnDate(int no, Connection con) {
+		int res = 0;
+		
+		try {
+			String sql = "UPDATE RENT SET RETURN_DATE = SYSDATE \r\n"
+					+ "    WHERE RENTNO = (SELECT RENT_NO FROM BOOK WHERE NO = ?)";
+			
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			res = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
