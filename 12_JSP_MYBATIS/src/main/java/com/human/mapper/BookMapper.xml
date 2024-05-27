@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.human.mapper.BookMapper">
+
+<!-- #{} 문자이면 ''을 자동으로 붙여줌 
+	 ,${} 문자이면 ''을 붙여줘야함  -->
+  <select id="selectBook" resultType="com.human.dto.BookDTO">
+    select * from Book where no = #{no}
+  </select>
+  
+  <select id="selectBook" resultType="com.human.dto.BookDTO">
+  	select * from book 
+  </select>
+  
+  <insert id="insertBook">
+  	insert into book(no,title,author) values(seq_book_no.nextval, #{title},#{author})
+  </insert>
+  
+  <delete id="deleteBook">
+  	delete book where no = #{no}
+  </delete>
+  
+  <delete id="updateBook">
+  update book set title=#{title}, author=${author} where no=#{no}
+  </delete>
+  
+</mapper> 
