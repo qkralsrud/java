@@ -37,7 +37,7 @@ public class BookDetailController extends HttpServlet {
 		
 		
 		// 웹브라우져 화면에 출력
-		response.getWriter().append("no: ").append(request.getParameter("no"));
+		//response.getWriter().append("no: ").append(request.getParameter("no"));
 		// 콘솔창에 출력
 		System.out.println(request.getParameter("no"));
 		BookService service = new BookService();

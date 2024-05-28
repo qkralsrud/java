@@ -8,5 +8,6 @@
 </head>
 <body>
 <h2>도서목록</h2>
+${list }
 </body>
 </html>

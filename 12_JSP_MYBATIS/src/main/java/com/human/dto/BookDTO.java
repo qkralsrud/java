@@ -4,26 +4,28 @@ public class BookDTO {
 	
 	private int no;
 	private String title;
-	private String author;
 	
 	public BookDTO() {}
-			
-	public BookDTO(int no, String title, String author) {
+	
+	public BookDTO(String noStr, String title, String author) {
 		super();
-		this.no = no;
-		this.title = title;
-		this.author = author;
+		if(noStr != null) {
+			try {
+				this.no = Integer.parseInt(noStr);
+				this.title = title;
+				this.author = author;				
+			} catch (Exception e) {
+				this.no= 0;
+				this.title="";
+				this.author="";
+				// TODO: handle exception
+			}
+		}
+
 	}
 
-
-	@Override
-	public String toString() {
-		
-		return "BookDTO [no=" + no + ", title=" + title + ", author=" + author + "]";
-	}
-
-
-
+	private String author;
+	
 	public int getNo() {
 		return no;
 	}
@@ -43,6 +45,8 @@ public class BookDTO {
 		this.author = author;
 	}
 	
-	
-	
+	@Override
+	public String toString() {
+		return no +"/"+ title +"/"+ author;
+	}
 }
