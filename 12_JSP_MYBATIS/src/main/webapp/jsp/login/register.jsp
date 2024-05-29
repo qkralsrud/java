@@ -7,19 +7,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<%
-	String intro = "";
-	if(request.getParameter("intro") != null){
-		intro = request.getParameter("intro").replace("\r\n", "<br>");		
-	}
-%>
-
-${param.id }<br>
-${param.sex }<br>
-${param.favo }<br>
-${param.intro }<br>
-줄바꿈처리 : <%=intro %>
-
+<h2>회원가입</h2>
+<form action="/register">
+	아이디 : <input type="text" name="id" value="momo"><br>
+	성별 : <input type="radio" name="sex" value="M">남자
+		  <input type="radio" name="sex" value="F" checked>여자<br>   
+	관심사항 : <input type="checkbox" name="favo" value="eco">경제
+			 <input type="checkbox" name="favo" value="pol" checked>정치
+			 <input type="checkbox" name="favo" value="ent">연예<br>
+	자기소개 : <textarea name="intro" rows="5" cols="30"></textarea><br>
+	
+	<button>전송</button>
+	
+	
+	
+</form>
 </body>
 </html>
