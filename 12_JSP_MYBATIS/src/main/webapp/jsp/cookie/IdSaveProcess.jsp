@@ -22,7 +22,7 @@
 		*/
 		// 공통로직을 사용하여 쿠키를 생성하고 응답객체에 추가
 		CookieManager.makeCookie(response
-					, "loginid"
+					, "loginId"
 					, request.getParameter("user_id")
 					, 60*60*7);
 		
