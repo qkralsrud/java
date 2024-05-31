@@ -11,7 +11,14 @@
   </select>
 
   <select id="selectBookList" resultType="com.human.dto.BookDTO">
-  	select * from book
+  select *
+from ( select rownum rn, t.*
+        from (select    no, title, author, publisher, price
+                        , to_char(pub_day, 'yyyy-mm-dd') pub_day, rent_yn,rent_no 
+                from    book 
+                order   by no desc) t
+        )
+where rn between #{startNo} and #{endNO} ; 
   </select>
 
 <!-- 쿼리 문장의 ;을 제거 하지 않으면 오류가 발생 한다!!!!!!!!!!!! -->

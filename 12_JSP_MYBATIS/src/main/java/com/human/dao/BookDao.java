@@ -68,10 +68,10 @@ public class BookDao {
 		return book;
 	}
 	
-	public List<BookDTO> selectBookList() {
+	public List<BookDTO> selectBookList(int page) {
 		List<BookDTO> list = null;
 		try(SqlSession session = sqlSessionFactory.openSession(true)){
-			list  = session.selectList("com.human.mapper.BookMapper.selectBookList");
+			list  = session.selectList("com.human.mapper.BookMapper.selectBookList",1);
 		}
 		return list;
 	}

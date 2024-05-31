@@ -1,5 +1,5 @@
-<%@page import="com.human.dto.BookDTO"%>
 <%@page import="java.util.List"%>
+<%@page import="com.human.dto.BookDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
 </head>
 <body>
 <h2>도서목록</h2>
-${list }
+${list }<br>
 <%
 
 	List<BookDTO> list = (List<BookDTO>)request.getAttribute("list");
