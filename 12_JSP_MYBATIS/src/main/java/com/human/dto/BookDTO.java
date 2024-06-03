@@ -2,6 +2,7 @@ package com.human.dto;
 
 public class BookDTO {
 	
+	private int rn;
 	private int no;
 	private String title;
 	
@@ -47,6 +48,14 @@ public class BookDTO {
 	
 	@Override
 	public String toString() {
-		return no +"/"+ title +"/"+ author;
+		return rn + "/" + no +"/"+ title +"/"+ author;
+	}
+
+	public int getRn() {
+		return rn;
+	}
+
+	public void setRn(int rn) {
+		this.rn = rn;
 	}
 }

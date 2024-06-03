@@ -1,4 +1,4 @@
-package com.huam.comfig;
+package com.human.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

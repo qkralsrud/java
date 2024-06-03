@@ -2,11 +2,11 @@ package com.human.service;
 
 import java.util.List;
 
-import com.human.dao.BookDao;
+import com.human.dao.BookDAO;
 import com.human.dto.BookDTO;
 
 public class BookService {
-	BookDao dao = new BookDao();
+	BookDAO dao = new BookDAO();
 	
 	public BookDTO selectBook(String no) {
 		
@@ -19,10 +19,14 @@ public class BookService {
 		}
 	}
 	
-	public List<BookDTO> selectBookList(){
-		return dao.selectBookList();
+	public List<BookDTO> selectBookList(int pageNo){
+		return dao.selectBookList(pageNo);
 	}
-
+	
+	public int totalCnt() {
+		return dao.totalCnt();
+	}
+	
 	public int bookInsert(BookDTO book) {
 		return dao.insert(book);
 	}

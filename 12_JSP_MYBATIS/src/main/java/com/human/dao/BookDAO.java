@@ -7,12 +7,12 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.huam.comfig.MyApp1;
+import com.human.config.MyApp1;
 import com.human.dto.BookDTO;
 import com.human.util.SqlSessionFactoryManager;
 
 
-public class BookDao {
+public class BookDAO {
 	
 	final static Logger logger = LoggerFactory.getLogger(MyApp1.class);
 
@@ -68,17 +68,29 @@ public class BookDao {
 		return book;
 	}
 	
-	public List<BookDTO> selectBookList(int page) {
+	public List<BookDTO> selectBookList(int pageNo) {
 		List<BookDTO> list = null;
 		try(SqlSession session = sqlSessionFactory.openSession(true)){
-			list  = session.selectList("com.human.mapper.BookMapper.selectBookList",1);
+			
+			list  = session.selectList("com.human.mapper.BookMapper.selectBookList", pageNo);
 		}
 		return list;
 	}
 	
+	public int totalCnt() {
+		int res = 0;
+		try(SqlSession session = sqlSessionFactory.openSession(true)){
+			res  = session.selectOne("com.human.mapper.BookMapper.totalCnt");
+		}
+		return res;
+	}
 	
 	public static void main(String[] args) {
-		BookDao dao = new BookDao();
+		BookDAO dao = new BookDAO();
+		System.out.println("총건수 : " + dao.totalCnt());
+		System.out.println("마지막 페이지 번호 : " + (int)Math.ceil(dao.totalCnt()/10.0));
+		
+		/*
 		BookDTO book = new BookDTO();
 		book.setTitle("제목update");
 		book.setAuthor("작가update");
@@ -92,7 +104,7 @@ public class BookDao {
 		logger.info(res + "건 처리 되었습니다.");
 		
 		System.out.println(dao.selectBook(1));
-		logger.info(dao.selectBookList().toString());
+		logger.info(dao.selectBookList(1).toString());
 		
 		/*
 		try (SqlSession session = dao.sqlSessionFactory.openSession()) {
