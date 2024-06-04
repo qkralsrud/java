@@ -14,6 +14,17 @@ public class CriteriaDTO {
 	
 	public CriteriaDTO(){}
 	
+	public CriteriaDTO(String parmPageNo) {
+		
+		try {
+			if(parmPageNo != null && !"".equals(parmPageNo)) {
+				this.pageNo = Integer.parseInt(parmPageNo);
+			}
+		} catch (Exception e) {
+			System.out.println("parmPageNo를 숫자로 변경하던도중 예외가 발생 하였습니다.");
+		}
+	}
+
 	/**
 	 * 초기화
 	 * @param parmPageNo
