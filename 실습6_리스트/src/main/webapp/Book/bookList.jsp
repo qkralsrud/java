@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,20 +16,34 @@
 </head>
 <body>
 <h2>도서목록</h2>
-<%
-	System.out.print("목록 : " + request.getAttribute("list"));
-	if(request.getAttribute("list") != null){
-		List<BookDTO> list = (List<BookDTO>)request.getAttribute("list");
-		for(BookDTO book : list){
-			out.print(book.getTitle() + " ");
-			out.print(book.getAuthor() + " ");
-			out.print(book.getRent_yn() + " <br>" );
-		}
-	}else{
-		out.print("게시글이 존재하지 않습니다.");
-	}
-%>
+<table border="1">
+	<tr>
+		<td>번호</td>
+		<td width="100px">제목</td>
+		<td>작가</td>
+		<td>대여여부</td>
+	</tr>
+<c:choose>
+	<c:when test="${empty map.list }">
+		<tr>
+			<td colspan="4">목록이 존재하지 않습니다.</td>
+		</tr>
+	</c:when>
+	<c:otherwise>
+		<c:forEach items="${map.list }" var="book">
+			
+			<tr>
+				<td>${book.no }</td>
+				<td>${book.title }</td>
+				<td>${book.author }</td>
+				<td>${book.rent_yn }</td>
+			</tr>
+		</c:forEach>
+	</c:otherwise>
+</c:choose>
+</table>
+
 <!-- 외부파일을 불러옵니다. -->
-<%@ include file = "/common/pageNavi.jsp" %>
+<%@ include file = "/common/pageNavi3.jsp" %>
 </body>
 </html>

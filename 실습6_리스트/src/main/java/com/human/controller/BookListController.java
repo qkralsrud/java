@@ -1,7 +1,7 @@
 package com.human.controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.human.dto.BookDTO;
 import com.human.dto.CriteriaDTO;
-import com.human.dto.PageDto;
 import com.human.service.BookService;
 
 /**
@@ -38,17 +36,13 @@ public class BookListController extends HttpServlet {
 		
 		// 리스트 조회
 		BookService service = new BookService();
-		List<BookDTO> list = service.getBookList(cri);
-		int totalCnt = service.getTotalCnt();
 		
-		// PageDTO 생성
-		// 타입 변수이름
-		// 페이지 블럭을 그리기 위해서 PageDto객체 생성 합니다.
-		// 페이지 블럭을 그리기 위해서 필요한 값은 총건수, 요청페이지번호, 페이지당 게시물수
-		PageDto pageDto = new PageDto(totalCnt, cri.getPageNo(), cri.getAmount());
+		// 리스트 조회및 pageDto객체를 생성후 Map에 담아서 반환 
+		//List<BookDTO> list = service.getBookList(cri);
+		Map<String, Object> map = service.getBookList(cri);
+		
 		// 내장객체 영역에 저장
-		request.setAttribute("list", list);
-		request.setAttribute("pageDto", pageDto);
+		request.setAttribute("map", map);
 		
 		// 화면을 전환
 		// 경로를 지정하는 방법

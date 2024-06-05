@@ -2,29 +2,34 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function go(pageNo){
+	document.location = "/memberList?pageNo="+pageNo;
+}
+</script>
 </head>
 <body>
-memberList
+<h3>사용자 목록</h3>
 <hr>
-<%
-	if(request.getAttribute("list") != null && !"".equals(request.getAttribute("list"))){
-		List<MemberDTO> list = (List<MemberDTO>)request.getAttribute("list");
-		for(MemberDTO member : list){
-			out.print(member.getID() + " ");
-			out.print(member.getPW() + " ");
-			out.print(member.getNAME() + " ");
-			out.print(member.getADMIN_YN() + " <br>");
-		}
-	}
-%>
+<c:choose>
+	<c:when test="${empty map.list }">
+		데이터가 존재하지 않습니다.
+	</c:when>
+	<c:otherwise>
+		<c:forEach items="${map.list }" var="member">
+			${member.ID} / ${member.NAME } <br>
+		</c:forEach>
+	</c:otherwise>
+</c:choose>
 
 <!-- 페이지 블럭을 그려주는 페이지를 불러옵니다 -->
-<%@include file="/common/pageNavi.jsp" %>
+<%@include file="/common/pageNavi3.jsp" %>
 
 </body>
 </html>

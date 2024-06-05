@@ -1,6 +1,8 @@
 package com.human.dto;
 
 public class BookDTO {
+	// 세로선택모드 열선택모드 alt + shift + a
+
 	 private int no; 
 	 private String title;
 	 private String author;
@@ -9,12 +11,6 @@ public class BookDTO {
 	 private String pub_date;
 	 private String rent_yn;
 	 private int rent_no;
-	 
-	 
-	 
-	 
-	 
-	 
 	 
 	 
 	public int getNo() {
