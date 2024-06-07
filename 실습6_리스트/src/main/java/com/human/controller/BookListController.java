@@ -31,8 +31,13 @@ public class BookListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 검색용 파라메터 수집
+		String pageNo = request.getParameter("pageNo");
+		String searchField = request.getParameter("searchField");
+		String searchWord = request.getParameter("searchWord");
+		
 		// 요청수집
-		CriteriaDTO cri = new CriteriaDTO(request.getParameter("pageNo")); 
+		CriteriaDTO cri = new CriteriaDTO(pageNo, searchField, searchWord); 
 		
 		// 리스트 조회
 		BookService service = new BookService();

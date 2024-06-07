@@ -28,10 +28,10 @@
 <c:set var="betweenVar">태그사이에값을 입력</c:set>
 
 <h3>EL표현언어를 이용해서 변수를 출력</h3>
-${pageScope.directVal }<br>
-${elVal }<br>
-${expVar } <br>
-${betweenVar }
+	${pageScope.directVal }<br>
+	${elVal }<br>
+	${expVar } <br>
+	${betweenVar }
 
 <h3>자바빈즈 생성</h3>
 <c:set var="book" value='<%=new BookDTO("1", "코드로 배우는 스프링", "구멍가게코딩단") %>' scope="request"></c:set>

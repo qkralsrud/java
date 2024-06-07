@@ -10,12 +10,29 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function go(pageNo){
-	document.location = "/memberList?pageNo="+pageNo;
+	
+	searchForm.pageNo.value=pageNo;
+	searchForm.submit();
 }
 </script>
 </head>
 <body>
 <h3>사용자 목록</h3>
+<!-- 
+	1. searchForm만들고 검색 버튼을 클릭시 파라메터 유지하기
+	2. 컨트롤러에서 검색 파라메터 수집및 전달
+	3. 쿼리 수정(리스트및 총건수 조회 쿼리 수정)
+	4. 페이지 번호를 클릭시 폼이 전송 될 수 있도록 수정
+ -->
+<form action="/memberList" method="get" name="searchForm">
+	<select name="searchField">
+		<option value="id" ${param.searchField == 'id' ? 'selected' : '' }>아이디</option>
+		<option value="name" ${param.searchField == 'name' ? 'selected' : '' }>이름</option>
+	</select>
+	<input type="text" name="searchWord" value="${param.searchWord }">
+	<input type="hidden" name="pageNo" value="${param.pageNo }">
+	<button onclick="go(1)">검색</button>
+</form>
 <hr>
 <c:choose>
 	<c:when test="${empty map.list }">

@@ -22,16 +22,29 @@
 	<c:otherwise>
 		<!-- 이전블럭 -->
 		<c:if test="${map.pageDto.prev }">
+			<a href="javascript:go(1 )"><<</a> 
 			<a href="javascript:go(${map.pageDto.startNo-1 })">◀</a>
 		</c:if>
+		
 		<!-- 페이지 번호 출력 -->
 		<c:forEach begin="${map.pageDto.startNo }" 
 						end="${map.pageDto.endNo }" var="pageNo">
-			<a href="javascript:go(${pageNo })">${pageNo }</a>				
+						
+			<c:choose>
+				<c:when test="${pageNo eq map.pageDto.pageNo}">
+					${pageNo }
+				</c:when>
+				<c:otherwise>
+					<a href="javascript:go(${pageNo })">${pageNo }</a>				
+				</c:otherwise>
+			</c:choose>			
 		</c:forEach>
+		
+	
 		<!-- 다음블럭 -->
 		<c:if test="${map.pageDto.next }">
-			<a href="javascript:go(${map.pageDto.endNo+1})">▶</a>
+			<a href="javascript:go(${map.pageDto.endNo+1})">▶</a> 
+			<a href="javascript:go(${map.pageDto.realEndNo})">>></a>
 		</c:if>
 	</c:otherwise>
 </c:choose>

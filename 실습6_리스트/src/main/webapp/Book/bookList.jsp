@@ -8,14 +8,34 @@
 <head>
 <meta charset="UTF-8">
 <title>도서목록 조회</title>
+
 <script type="text/javascript">
 	function go(pageNo){
-		document.location='/bookList?pageNo='+pageNo;
+		//document.location='/bookList?pageNo='+pageNo;
+		//1.페이지 이동 함수에 파라메터를 추가 
+		//'/bookList ? pageNo ='+pageNo+'&searchField='+'&searchWord=';
+		//2.form을 submit
+		searchForm.pageNo.value=pageNo;
+		searchForm.submit();
 	}
 </script>
+
 </head>
 <body>
 <h2>도서목록</h2>
+ <form action="/bookList">
+ 	<select name="searchField">
+ 	<!-- 내가 select 에서 선택한 옵션을 그대로 유지시킨다 ${param.searchField eq 'publisher'? 'selected':'' }-->
+ 		<option value="title" ${param.searchField eq 'title'? 'selected':'' }>도서명</option> 
+ 		<option value="author" ${param.searchField eq 'author'? 'selected':'' }>작가명</option> 
+ 		<option value="publisher" ${param.searchField eq 'publisher'? 'selected':'' }>출판사명</option> 
+ 	</select>
+	<input type="text" name="searchWord" value="${param.searchWord }">
+	<input type="text" name="pageNo" value="${param.pageNo }">
+	<button>검색</button>
+	 		
+ </form>
+
 <table border="1">
 	<tr>
 		<td>번호</td>
