@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.human.mapper.MyfileMapper">
+	
+	<insert id="insertMyfile">
+	INSERT INTO MYFILE (IDX, NAME, TITLE, CATE, OFILE, SFILE)
+            	VALUES (SEQ_MYFILE_IDX.NEXTVAL, #{name}, #{title}, #{cate}, #{ofile}, #{sfile})
+	</insert>
+	
+	<select id="getList" resultType="com.human.dto.MyFileDTO">
+	select 	idx, name, title, cate, ofile, sfile, to_char(postDate, 'yyyy-mm-dd') postDate
+	from 	myfile
+	</select>
+</mapper>

@@ -20,7 +20,11 @@
  				enctype="multipart/form-data">
  				
  	<input type="text" name="name">
- 	<input type="text" name="id">
+ 	<input type="text" name="title">
+ 	<select name="cate">
+ 		<optgroup label="img">이미지</optgroup>
+ 		<optgroup label="etc">기타</optgroup>
+ 	</select>
  	<input type="file" name="file">
  	<button>파일업로드</button>
  </form>

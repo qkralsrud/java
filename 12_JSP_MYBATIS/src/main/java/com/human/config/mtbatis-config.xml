@@ -14,7 +14,11 @@
       </dataSource>
     </environment>
   </environments>
+  
   <mappers>
     <mapper resource="com/human/mapper/BookMapper.xml"/>
+    <mapper resource="com/human/mapper/MemberMapper.xml"/>
+    <mapper resource="com/human/mapper/MyfileMapper.xml"/>
   </mappers>
+  
 </configuration>
