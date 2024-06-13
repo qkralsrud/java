@@ -7,54 +7,71 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<%
-	PageDto pageDto = new PageDto(100, 3, 10);
-	request.setAttribute("pageDto", pageDto);
-%>
+<script type="text/javascript">
+	function go(pageNo){
+		//alert(pageNo);
+		location.href='/bookList?pageNo='+pageNo;
+	}
+</script>
 </head>
 <body>
-${pageDto } <br>
+<!-- ${map.pageDto } <br> -->
+<c:set var="pageDto" value="${map.pageDto }"></c:set>
+<!-- 
 startNo : ${pageDto.startNo }
-endNo : ${pageDto.endNo }
-prev : ${pageDto.prev }
-next : ${pageDto.next }
+/ endNo : ${pageDto.endNo }
+/ prev : ${pageDto.prev }
+/ next : ${pageDto.next }
+ -->
+<!-- pageDto를 변수에 저장 -->
+
 <nav aria-label="...">
   <ul class="pagination justify-content-center">
   	<!-- 이전블럭 -->
+  	<c:choose>
+  		<c:when test="${pageDto.prev }">
+		    <li class="page-item">
+		      <a class="page-link" href="javascript:go(${pageDto.startNo-1 })">Previous</a>
+		    </li>
+  		</c:when>
+  		<c:otherwise>
+	  		<!-- disabled : 비활성화 - 화면에 보여주는데 누르지 못하게  -->
+		    <li class="page-item disabled">
+		      <a class="page-link">Previous</a>
+		    </li>
+  		</c:otherwise>
+  	</c:choose>
   	
-  	<c:if test="${pageDto.prev }">
-  	<!-- disabled : 비활성화 - 화면에 보여주는데 누르지 못하게  -->
-    <li class="page-item disabled">
-      <a class="page-link">Previous</a>
-    </li>
-    </c:if>
-    
     <!-- 페이지번호 -->
     <c:forEach begin="${pageDto.startNo }" end="${pageDto.endNo }" var="i">
     	<c:choose>
     		<c:when test="${pageDto.pageNo eq i }">
-	    		<!-- 현재페이지 -->
+	    		<!-- 현재페이지 이동할 필요 없음!!! -->
 			    <li class="page-item active" aria-current="page">
-			      <a class="page-link" href="#">${i }</a>
+			      <a class="page-link">${i }</a>
 			    </li>
     		</c:when>
     		<c:otherwise>
 	    		<!-- 일반 -->
-	    		<li class="page-item"><a class="page-link" href="#">${i }</a></li>
+	    		<li class="page-item"><a class="page-link" href="javascript:go(${i })">${i }</a></li>
     		</c:otherwise>
     	</c:choose>
     </c:forEach>
     
-    
-    
-
-    <!-- 다음블럭 -->    
-    <c:if test="${pageDto.next }">
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-    </c:if>
+    <!-- 다음블럭 -->
+  	<c:choose>
+  		<c:when test="${pageDto.next }">
+		    <li class="page-item">
+		      <a class="page-link" href="javascript:go(${pageDto.endNo + 1 })">Next</a>
+		    </li>
+  		</c:when>
+  		<c:otherwise>
+	  		<!-- disabled : 비활성화 - 화면에 보여주는데 누르지 못하게  -->
+		    <li class="page-item disabled">
+		      <a class="page-link">Next</a>
+		    </li>
+  		</c:otherwise>
+  	</c:choose>
   </ul>
 </nav>
 </body>

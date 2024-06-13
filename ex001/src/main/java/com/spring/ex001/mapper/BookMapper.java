@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import com.spring.ex001.dto.BookDTO;
+import com.spring.ex001.dto.CriteriaDTO;
 
 @Mapper
 public interface BookMapper {
@@ -19,7 +20,20 @@ public interface BookMapper {
 	
 	/**
 	 * 동적쿼리를 생성 하기 위해서 xml파일을 생성
+	 * @param cri 
 	 */
-	public List<BookDTO> getBookList();
-	
+	public List<BookDTO> getBookList(CriteriaDTO cri);
+
+	/**
+	 * 페이징 처리를 위해 총 건수를 조회 합니다.
+	 * @return
+	 */
+	@Select("select count(*) from book")
+	public int getTotalCnt();
+	/**
+	 * 페이징 처리를 위해 총 건수를 조회 합니다.
+	 * @return
+	 */
+	@Select("select count(*) from book where no>${pageNo}")
+	public int getTotalCnt1(CriteriaDTO cri);
 }

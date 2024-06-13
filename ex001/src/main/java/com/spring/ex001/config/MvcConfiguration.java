@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@ComponentScan(basePackages="com.spring.ex001")
+@ComponentScan(basePackages="com.spring.ex01")
 //@EnableWebMvc
 public class MvcConfiguration implements WebMvcConfigurer{
 
@@ -23,10 +23,10 @@ public class MvcConfiguration implements WebMvcConfigurer{
 		return resolver;
 	}
 	
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-	}
+//	@Override
+//	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+//	}
 
 	
 }

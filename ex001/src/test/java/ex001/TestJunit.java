@@ -1,6 +1,17 @@
 package ex001;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.spring.ex001.config.MvcConfiguration;
+import com.spring.ex001.dto.BookDTO;
+
 
 import org.junit.Test;
 /**
@@ -18,16 +29,30 @@ import org.junit.Test;
  * 
  * IOC컨테이너에 생성된 객체를 테스트 하기 위해서 설정이 필요!!!
  */ 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = MvcConfiguration.class)
 public class TestJunit {
+	
+	// 객체를 주입 받아요
+	@Autowired
+	BookDTO dto;
+	
 	@Test
-	public void test1() {
-		int i =10*5;
-		assertEquals(i, 50);
+	public void test() {
+		System.out.println(dto);
+		assertNotNull(dto);
 	}
 	
 	@Test
+	public void test1() {
+		int i = 10*5;
+		// 실행결과와 예상값을 비교
+		assertEquals(i, 50);
+	}
+	@Test
 	public void test2() {
-	
-		
+		BookDTO dto = null;
+		// 실행결과와 예상값을 비교
+		assertNotNull(dto);
 	}
 }
