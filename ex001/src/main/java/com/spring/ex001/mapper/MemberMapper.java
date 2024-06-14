@@ -1,8 +1,11 @@
 package com.spring.ex001.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import com.spring.ex001.dto.CriteriaDTO;
 import com.spring.ex001.dto.MemberDTO;
 
 /**
@@ -14,5 +17,10 @@ public interface MemberMapper {
 
 	@Select("select * from member where id=#{id} and pw=#{pw}")
 	MemberDTO login(MemberDTO member);
+
+	List<MemberDTO> getMemberList(CriteriaDTO cri);
+
+	@Select("select count(*) from member")
+	int getTotalCnt();
 
 }

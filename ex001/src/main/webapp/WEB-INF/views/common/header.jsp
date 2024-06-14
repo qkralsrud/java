@@ -27,8 +27,27 @@
 
 <script type="text/javascript">
 	window.onload = function(){
-		// 로그아웃 버튼이 클릭되면 실행 함수를 추가
-		alert('logout');
+		let logoutBtn = document.querySelector( "#logoutBtn");
+		let loginBtn = document.querySelector("#loginBtn");
+		let signupBtn = document.querySelector("#signupBtn");
+		
+		if(logoutBtn != null){
+				// 로그아웃 버튼이 클릭되면 실행 함수를 추가
+			logoutBtn.addEventListener('click',function(){
+				location.href="/logout";
+			});
+		}
+		if(loginBtn != null){
+			loginBtn.addEventListener('click',function(){
+				//로그인 페이지로 이동
+				location.href="/login";
+				//alert('클릭'); alert을 해둔건 작동이 되는지 확인하기 위함 
+			});
+			signupBtn.addEventListener('click',function(){
+				//회원가입 페이지로 이동
+				location.href="/signup";
+			});
+		}
 	}
 </script>
 
@@ -54,11 +73,11 @@
       <div class="col-md-3 text-end">
       <c:choose>
       	<c:when test="${empty sessionScope.id }">
-	      	<button type="button" class="btn btn-outline-primary me-2">Login</button>
-	        <button type="button" class="btn btn-primary">Sign-up</button>
+	      	<button type="button" id="loginBtn" class="btn btn-outline-primary me-2">Login</button>
+	        <button type="button" id="signupBtn" class="btn btn-primary">Sign-up</button>
       	</c:when>
       	<c:otherwise>
-      		<button type="button" class="btn btn-outline-primary me-2">Logout</button>
+      		<button type="button" id="logoutBtn" class="btn btn-outline-primary me-2">Logout</button>
       	</c:otherwise>
       </c:choose>
       

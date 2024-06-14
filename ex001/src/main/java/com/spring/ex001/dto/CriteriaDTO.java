@@ -9,8 +9,8 @@ public class CriteriaDTO {
 	private int pageNo = 1; /*요청 페이지 번호*/
 	private int amount = 10; /*페이지당 게시물의 수*/
 	
-	private String searchField = ""; /*검색필드*/
-	private String searchWord = "";	/*검색어*/
+	private String searchField=""; /*검색필드*/
+	private String searchWord="";	/*검색어*/
 	
 	public CriteriaDTO(){}
 	

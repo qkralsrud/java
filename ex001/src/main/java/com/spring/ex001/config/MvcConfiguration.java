@@ -23,10 +23,10 @@ public class MvcConfiguration implements WebMvcConfigurer{
 		return resolver;
 	}
 	
-//	@Override
-//	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-//	}
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+	}
 
 	
 }

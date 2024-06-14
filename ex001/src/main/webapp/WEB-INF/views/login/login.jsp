@@ -1,3 +1,4 @@
+<%@page import="com.spring.ex001.util.CookieManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!doctype html>
@@ -119,20 +120,22 @@ body {
   border-top-right-radius: 0;
 }
     </style>
-
+<%--
+	String id = CookieManager.getCookieValue(request, "id");
+--%>
     
     <!-- Custom styles for this template 
     <link href="sign-in.css" rel="stylesheet">-->
   </head>
   <body class="d-flex align-items-center py-4 bg-body-tertiary">
-
   <main class="form-signin w-100 m-auto">
     <form action="/loginAction" method="post">
       <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
       <h1 class="h3 mb-3 fw-normal">영등포 도서관</h1>
 		${msg }
       <div class="form-floating">
-        <input type="text" class="form-control" name="id" id="floatingInput" placeholder="name@example.com">
+        <input type="text" class="form-control" name="id" id="floatingInput" placeholder="name@example.com"
+        		 value="${saveCookieId }">
         <label for="floatingInput">id</label>
       </div>
       <div class="form-floating">
@@ -141,7 +144,8 @@ body {
       </div>
 
       <div class="form-check text-start my-3">
-        <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+        <input class="form-check-input" type="checkbox" name="chkSaveId" value="1" id="flexCheckDefault"
+        			${empty saveCookieId ? "":"checked" }>
         <label class="form-check-label" for="flexCheckDefault">
           아이디 저장
         </label>
