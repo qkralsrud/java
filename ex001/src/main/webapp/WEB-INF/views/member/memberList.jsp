@@ -47,6 +47,13 @@
 			</form>
 		</div>
 	</div>	
+	
+	
+	<div align="right">
+  		<button class="form-control btn btn-dark">글쓰기</button>
+  	</div>
+	
+		
 	<p></p>	
 			<!-- 
 			

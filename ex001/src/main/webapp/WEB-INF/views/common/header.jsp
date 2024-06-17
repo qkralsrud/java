@@ -7,6 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<!-- 부트스트랩 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	
+	
 <style type="text/css">
 .form-control-dark {
   border-color: var(--bs-gray);
@@ -23,32 +28,42 @@
 .dropdown-toggle:not(:focus) {
   outline: 0;
 }
+
 </style>
 
 <script type="text/javascript">
-	window.onload = function(){
-		let logoutBtn = document.querySelector( "#logoutBtn");
+	// window.onload=function(){} 을 이용해서 이벤트를 추가할 경우, 한개의 이벤트만 적용이 가능하다
+	// addEventListener를 이용할 경우, 여러개의 이벤트를 적용 할 수 있다
+	//window.onload = function(){
+	window.addEventListener('load', function(){
+		let logoutBtn = document.querySelector("#logoutBtn");
 		let loginBtn = document.querySelector("#loginBtn");
 		let signupBtn = document.querySelector("#signupBtn");
 		
+		// 로그인 상태이면 로그아웃 버튼에 이벤트를 추가
 		if(logoutBtn != null){
-				// 로그아웃 버튼이 클릭되면 실행 함수를 추가
-			logoutBtn.addEventListener('click',function(){
-				location.href="/logout";
+			// 로그아웃 버튼이 클릭되면 실행 함수를 추가
+			logoutBtn.addEventListener('click', function(){
+				// 로그아웃 처리후 로그인페이지로 이동
+				location.href = "/logout";
 			});
 		}
+		
+		// 로그아웃 상태이면 로그인 버튼에 이벤트를 추가
 		if(loginBtn != null){
-			loginBtn.addEventListener('click',function(){
-				//로그인 페이지로 이동
-				location.href="/login";
-				//alert('클릭'); alert을 해둔건 작동이 되는지 확인하기 위함 
+			loginBtn.addEventListener('click', function(){
+				// 로그인 페이지로 이동
+				location.href= "/login";
 			});
-			signupBtn.addEventListener('click',function(){
-				//회원가입 페이지로 이동
-				location.href="/signup";
+		
+			signupBtn.addEventListener('click', function(){
+				// 회원가입 페이지로 이동
+				location.href= "/signup";
 			});
 		}
-	}
+		
+	});
+	
 </script>
 
 </head>
@@ -64,8 +79,8 @@
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-        <li><a href="#" class="nav-link px-2">Features</a></li>
-        <li><a href="#" class="nav-link px-2">Pricing</a></li>
+        <li><a href="/bookList" class="nav-link px-2">도서목록</a></li>
+        <li><a href="/memberList" class="nav-link px-2">회원목록</a></li>
         <li><a href="#" class="nav-link px-2">FAQs</a></li>
         <li><a href="#" class="nav-link px-2">About</a></li>
       </ul>
@@ -85,7 +100,9 @@
         
       </div>
     </header>
-</div>
+
+
+
 
 </body>
 </html>
