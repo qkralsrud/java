@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.spring</groupId>
-	<artifactId>ex001</artifactId>
+	<artifactId>ex01</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>ex001</name>
+	<name>ex01</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -16,7 +16,7 @@
 		<cglib.version>2.2.2</cglib.version>
 	</properties>
 
-		<dependencies>
+	<dependencies>
 		<!-- Spring core & mvc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -44,7 +44,15 @@
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
-
+		
+		<!-- 비밀번호 암호화 : BCryptPasswordEncoder-->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>${spring.version}</version> 
+		</dependency>
+		
+		
 		<!-- CGLib for @Configuration -->
 		<dependency>
 			<groupId>cglib</groupId>
@@ -55,12 +63,15 @@
 
 
 		<!-- Servlet Spec -->
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.4</version>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
+
+
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -136,7 +147,13 @@
 		    <version>2.17.1</version>
 		</dependency>
 
-		
+		<!-- 파일첨부용 https://mvnrepository.com/artifact/servlets.com/cos -->
+		<dependency>
+		    <groupId>servlets.com</groupId>
+		    <artifactId>cos</artifactId>
+		    <version>05Nov2002</version>
+		</dependency>
+
 	</dependencies>
 
 	<repositories>

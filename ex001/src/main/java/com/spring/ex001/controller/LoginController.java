@@ -114,18 +114,22 @@ public class LoginController {
 	public String signup(HttpSession session) {
 		return "/login/signup";
 	}
+	
+	@GetMapping("/signupAction")
+	public String signupAction(MemberDTO member, Model model) {
+		
+		int res = service.regMember(member);
+		
+		// 회원가입 처리
+		if(res > 0) {
+			// 회원이 성공이면
+			model.addAttribute("msg", "회원가입 성공!! 로그인후 이용이 가능 합니다.");
+			model.addAttribute("url", "/login");			
+		} else {
+			// 회원가입이 실패
+			model.addAttribute("msg", "회원가입중 예외사항이 발생 하였습니다. 관리자에게 문의 하여주세요.");
+		}
+		// 메세지를 출력후 지정된 url로 이동(url이 없으면 뒤로가기)
+		return "/common/msgBox";
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

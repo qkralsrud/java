@@ -21,4 +21,14 @@
 		where   rn between ${pageNo*amount - (amount-1)} 
 							and ${pageNo*amount}
 	</select>
+	
+	<insert id="regMember">
+		insert into member (id, pw, name, reg_date)
+	    			values (#{id}, #{pw}, #{name}, sysdate)
+	</insert>
+	
+	
+	
+	
+	
 </mapper>

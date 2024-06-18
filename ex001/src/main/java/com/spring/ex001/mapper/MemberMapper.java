@@ -15,12 +15,17 @@ import com.spring.ex001.dto.MemberDTO;
 @Mapper
 public interface MemberMapper {
 
-	@Select("select * from member where id=#{id} and pw=#{pw}")
+	@Select("select * from member where id=#{id}")
 	MemberDTO login(MemberDTO member);
 
 	List<MemberDTO> getMemberList(CriteriaDTO cri);
 
 	@Select("select count(*) from member")
 	int getTotalCnt();
+	
+	@Select("select * from member where id = #{id}")
+	MemberDTO checkId(MemberDTO member);
+
+	int regMember(MemberDTO member);
 
 }

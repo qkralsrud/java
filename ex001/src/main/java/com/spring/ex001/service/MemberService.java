@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.spring.ex001.dto.CriteriaDTO;
@@ -21,8 +22,32 @@ public class MemberService {
 	@Autowired
 	PageDto pageDto;
 	
+	@Autowired
+	BCryptPasswordEncoder encoder;
+	
+	/**
+	 * 암호화된 비밀번호를 조회 하고 사용자가 입력한 비밀번호와 일치하는지 확인
+	 * @param member
+	 * @return
+	 */
 	public MemberDTO login(MemberDTO member) {
-		return mapper.login(member);
+		
+		// 해당 아이디의 사원의 정보를 조회
+		MemberDTO dbMember = mapper.login(member);
+		if(dbMember == null) {
+			return dbMember;
+		}
+		
+		// 사용자가 입력한 비밀번호와 데이터 베이스에 입력된 비밀번호가 일치하는지 확인
+		if(encoder.matches(member.getPw(), dbMember.getPw())) {
+			// 로그인 성공
+			return dbMember;
+		}else {
+			// 로그인 실패
+			return null;
+		}
+		
+		//return mapper.login(member);
 	}
 
 	public Map<String, Object> getMemberList(CriteriaDTO cri) {
@@ -43,4 +68,19 @@ public class MemberService {
 		return map;
 	}
 
+	public MemberDTO checkId(MemberDTO member) {
+		return mapper.checkId(member);
+	}
+
+	/**
+	 * 회원가입
+	 * @param member
+	 * @return
+	 */
+	public int regMember(MemberDTO member) {
+		
+		// 비밀번호 암호화 처리
+		member.setPw(encoder.encode(member.getPw()));
+		return mapper.regMember(member);
+	}
 }
