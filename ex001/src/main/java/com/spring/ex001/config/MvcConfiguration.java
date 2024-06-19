@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@ComponentScan(basePackages="com.spring.ex01")
+@ComponentScan(basePackages="com.spring.ex001")
 @EnableWebMvc
 public class MvcConfiguration implements WebMvcConfigurer{
 
@@ -33,7 +33,7 @@ public class MvcConfiguration implements WebMvcConfigurer{
 	}
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

@@ -36,4 +36,6 @@ public interface BookMapper {
 	 */
 	@Select("select count(*) from book where no>${pageNo}")
 	public int getTotalCnt1(CriteriaDTO cri);
+	
+	public int regBook(BookDTO book);
 }

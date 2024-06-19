@@ -19,4 +19,27 @@
 		where rn between ${pageNo * amount - (amount-1)} and ${pageNo * amount}
 		
 	</select>
+	
+	<insert id="regBook">
+		<!-- 키값을 미리 조회 후 객체에 저장
+			keyProperty : dto에 정의된 컬럼
+			resultType : 반환타입 (dto의 타입과 일치시켜주세요)
+			order : 언제실행할지 지정 (before : 본쿼리 실행전, after 실행후)
+		 -->
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select seq_book_no.nextval from dual
+		</selectKey>
+		
+		insert into book (no, title, author, publisher, price)
+	            values (#{no}, #{title}, #{author}, #{publisher}, #{price})
+	
+	</insert>
+	
+	
 </mapper>
+
+
+
+
+
+

@@ -7,14 +7,15 @@ import lombok.Data;
 @Component
 @Data
 public class BookDTO {
-	private String no;
+	private int no;
 	private String title;      
 	private String author;     
 	private String publisher;  
-	private String price;      
+	private int price;      
 	private String pub_date;   
 	private String rent_yn;
 	private String rent_yn_str;
-	private String rent_no;    
+	private String rent_no;
+	 
 	
 }

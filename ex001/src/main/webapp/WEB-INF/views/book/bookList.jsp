@@ -59,7 +59,7 @@
 	  <c:forEach items="${map.list }" var="book">
 	    <tr>
 	      <th scope="row">${book.no }</th>
-	      <td>${book.title }</td>
+	      <td><a href="/detailBook?no=${book.no }">${book.title }</a></td>
 	      <td>${book.author }</td>
 	      <td>${book.rent_yn_str }</td>
 	    </tr>
