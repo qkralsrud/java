@@ -44,19 +44,19 @@
 		<td>${map.book.rent_yn_str }</td>
 	</tr>
 	<tr>
-		<th class="table-active">작가</td>
+		<th class="table-active">작가</th>
 		<td>${map.book.author }</td>
-		<th class="table-active">가격</td>
+		<th class="table-active">가격</th>
 		<td>${map.book.price }</td>
 	</tr>
 	<tr>
-		<th class="table-active">출판사</td>
+		<th class="table-active">출판사</th>
 		<td>${map.book.publisher }</td>
 		<td></td>
 		<td></td>
 	</tr>
 	<tr>
-		<th class="table-active">첨부파일</td>
+		<th class="table-active">첨부파일</th>
 		<td colspan="3">
 			
 			<c:choose>
