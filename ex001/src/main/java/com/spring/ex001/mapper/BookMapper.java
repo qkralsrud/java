@@ -2,6 +2,7 @@ package com.spring.ex001.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -36,6 +37,12 @@ public interface BookMapper {
 	 */
 	@Select("select count(*) from book where no>${pageNo}")
 	public int getTotalCnt1(CriteriaDTO cri);
-	
+
 	public int regBook(BookDTO book);
+
+	@Select("select * from book where no = ${no}")
+	public BookDTO detailBook(int no);
+
+	@Delete("delete from book where no = ${no}")
+	public int delBook(int no);
 }

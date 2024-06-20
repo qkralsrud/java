@@ -12,8 +12,10 @@
 	<style type="text/css">
 		main {
 			margin:0 auto;
+			
+			/*
 			width:800px;
-			/*border:1px solid;
+			border:1px solid;
 			border-radius: 20px;*/
 			padding:20px;
 		}
@@ -59,7 +61,12 @@
 	  <c:forEach items="${map.list }" var="book">
 	    <tr>
 	      <th scope="row">${book.no }</th>
-	      <td><a href="/detailBook?no=${book.no }">${book.title }</a></td>
+	      <!-- 상세페이지에서 리스트로 돌아올때 페이지번호를 유지하기 위해서 pageNo를 넘겨줘야 해요!!! 
+	      		내장객체에 저장된 값을 출력하는경우 저장된 이름으로 접근
+	      		요청으로 전달된 파라메터의 경우 param.이름 으로 접근
+	      -->
+	      
+	      <td><a href="/detailBook?no=${book.no }&pageNo=${map.pageDto.pageNo}">${book.title }</a></td>
 	      <td>${book.author }</td>
 	      <td>${book.rent_yn_str }</td>
 	    </tr>

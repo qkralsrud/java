@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ import com.spring.ex001.mapper.FileMapper;
 @Service
 public class FileService {
 	
-	String filePath = "c:\\upload";
+	public static final String FILEPATH = "c:\\upload";
 	
 	@Autowired
 	FileMapper mapper;
@@ -84,14 +85,48 @@ public class FileService {
 
 		String newFileName = oldFileName+now+ext; 
 		
-		File oldFile = new File(filePath + File.separator + fileName);
-		File newFile = new File(filePath + File.separator + newFileName);
+		File oldFile = new File(FILEPATH + File.separator + fileName);
+		File newFile = new File(FILEPATH + File.separator + newFileName);
 		
 		// 파일의 이름을 변경 합니다.
 		oldFile.renameTo(newFile);
 		
 		// 새로운 파일명을 반환
 		return newFileName;
+	}
+
+
+	/**
+	 * 게시물에 첨부된 파일의 목록을 조회
+	 * @param string
+	 * @param string2
+	 * @return
+	 */
+	public List<FileDto> getFileList(String type, String seq) {
+		// return mapper.getFileList();
+		List<FileDto> fileList = mapper.getFileList(type, seq);
+		return fileList;
+	}
+
+
+
+	public void delFile(String type, String seq) {
+		// 파일목록 조회
+		List<FileDto> fileList = getFileList("book", seq);
+		
+		// 파일목록을 돌면서 파일을 삭제
+		for(FileDto file : fileList) {
+			String filepath = FileService.FILEPATH + File.separator +  file.getSfilename();
+			System.out.println("filepath : " + filepath);
+			
+			// 파일 객체 생성
+			File realFile = new File(filepath);
+			// 파일 삭제
+			realFile.delete();
+		}
+		
+		// 첨부파일 테이블의 데이터를 삭제
+		int res = mapper.delFile(type, seq);
 	}
 	
 	

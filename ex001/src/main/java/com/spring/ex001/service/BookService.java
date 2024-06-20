@@ -76,6 +76,33 @@ public class BookService {
 			e.printStackTrace();
 		}		return null;
 	}
+
+	/*
+	 * 도서정보및 첨부파일정보를 조회
+	 */
+	public Map<String, Object> detailBook(int no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		// 도서정보
+		BookDTO book = mapper.detailBook(no);
+		
+		// 도서에 첨부된 파일정보
+		List<FileDto> fileList = fileservice.getFileList("book", no+"");
+		
+		// map에 도서정보와 파일 정보를 저장
+		map.put("book", book);
+		map.put("fileList", fileList);
+		
+		return map;
+	}
+
+	public int delBook(int no) {
+		int res = mapper.delBook(no);
+		if(res > 0) {
+			// 첨부파일 삭제
+			fileservice.delFile("book", no+"");
+		}
+		return res;
+	}
 }
 
 
