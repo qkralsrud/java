@@ -44,19 +44,19 @@
 		<td>${map.book.rent_yn_str }</td>
 	</tr>
 	<tr>
-		<th class="table-active">작가</th>
+		<th class="table-active">작가</td>
 		<td>${map.book.author }</td>
-		<th class="table-active">가격</th>
+		<th class="table-active">가격</td>
 		<td>${map.book.price }</td>
 	</tr>
 	<tr>
-		<th class="table-active">출판사</th>
+		<th class="table-active">출판사</td>
 		<td>${map.book.publisher }</td>
 		<td></td>
 		<td></td>
 	</tr>
 	<tr>
-		<th class="table-active">첨부파일</th>
+		<th class="table-active">첨부파일</td>
 		<td colspan="3">
 			
 			<c:choose>
@@ -84,8 +84,10 @@
 		<td colspan="4" class="text-center">
 			<!-- 버튼을 클릭하면 이벤트가 실행 - 목록으로 이동하기 -->
 			<button type ="button" id="listBtn" class="btn btn-primary">도서목록</button>
-			<button type ="button" id="editBtn" class="btn btn-success">수정</button>
-			<button type ="button" id="delBtn" class="btn btn-danger">삭제</button>
+			<c:if test="${memberDto.admin_yn eq 'Y'}">
+				<button type ="button" id="editBtn" class="btn btn-success">수정</button>
+				<button type ="button" id="delBtn" class="btn btn-danger">삭제</button>
+			</c:if>
 		</td>
 	</tr>
 	

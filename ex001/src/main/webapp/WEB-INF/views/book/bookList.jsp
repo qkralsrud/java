@@ -46,7 +46,15 @@
 	<form action="/bookList" name="searchForm">
 		<input type="hidden" name="pageNo" value="${map.pageDto.pageNo }">
 	</form>
-	<button type="button" id="bookRegBtn" class="btn btn-dark">도서등록</button>
+	
+	<!-- 관리자인 경우에만 버튼이 보여질수 있도록 처리 -->
+	관리자여부 : ${memberDto.admin_yn eq 'Y' }
+	<!-- 타이포그래피 > 정렬 -->
+	<c:if test="${memberDto.admin_yn eq 'Y' }">
+		<div class="text-end">
+			<button type="button" id="bookRegBtn" class="btn btn-dark">도서등록</button>
+		</div>
+	</c:if>
 	<table class="table table-striped">
 	  <thead>
 	  	<!-- 타이틀 -->

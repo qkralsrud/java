@@ -24,11 +24,12 @@ public class MyBatisConfig {
   @Bean
   public DataSource dataSource() {
 	  HikariConfig config = new HikariConfig();
-	  config.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-	  config.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:orcl");
+	  //config.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+	  //config.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:orcl");
+	  config.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
+	  config.setJdbcUrl("jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl");
 	  config.setUsername("user01");
 	  config.setPassword("1234");
-	  
 	  
 	  HikariDataSource ds = new HikariDataSource(config);
 	  return ds;

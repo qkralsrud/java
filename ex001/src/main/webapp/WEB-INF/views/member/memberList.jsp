@@ -6,10 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style type="text/css">
 
 
 </style>
+<script type="text/javascript">
+window.addEventListener('load',()=>{
+	
+})
+</script>
 </head>
 <body>
 <!-- header -->
@@ -20,11 +26,7 @@
 <main>
 	<h2>회원목록</h2>
 
-	
-	
-	
-	
-	
+	<!--  -->
 	<div class="d-flex justify-content-center">
 		<div class="w-75">
 			<form action="/memberList" name="searchForm" class="row g-3">
@@ -49,8 +51,8 @@
 	</div>	
 	
 	
-	<div align="right">
-  		<button class="form-control btn btn-dark">글쓰기</button>
+	<div class="text-end">
+  		<button class="btn btn-dark">회원등록</button>
   	</div>
 	
 		
@@ -88,7 +90,11 @@
 			              <td>${member.id }</td>
 			              <td>${member.name }</td>
 			              <td>${member.admin_yn }</td>
-			              <td>${member.reg_date }</td>
+			              <td>
+			              	<div class="form-check form-switch">
+							  <input class="form-check-input" type="checkbox" role="switch" id="adminActionBtn">
+							</div>
+						  </td>
 			            </tr>
 		          	</c:forEach>
           		</c:otherwise>
