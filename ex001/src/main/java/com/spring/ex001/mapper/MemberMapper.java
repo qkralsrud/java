@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.spring.ex001.dto.CriteriaDTO;
 import com.spring.ex001.dto.MemberDTO;
@@ -28,4 +29,8 @@ public interface MemberMapper {
 
 	int regMember(MemberDTO member);
 
+	int updatePW(MemberDTO member);
+
+	@Update("update member set admin_yn=#{admin_yn} where id=#{id}")
+	int changeAdminYN(MemberDTO member);
 }

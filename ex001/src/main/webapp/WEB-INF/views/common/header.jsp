@@ -9,8 +9,9 @@
 <title>Insert title here</title>
 
 <!-- 부트스트랩 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-	
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">	
+<!-- 공통스크립트 -->
+<script type="text/javascript" src="/resources/js/common.js"></script>
 	
 <style type="text/css">
 .form-control-dark {
@@ -81,6 +82,7 @@
         <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
         <li><a href="/bookList" class="nav-link px-2">도서목록</a></li>
         <li><a href="/memberList" class="nav-link px-2">회원목록</a></li>
+        <li><a href="/boardList" class="nav-link px-2">게시판</a></li>
         <li><a href="#" class="nav-link px-2">FAQs</a></li>
         <li><a href="#" class="nav-link px-2">About</a></li>
       </ul>

@@ -83,4 +83,27 @@ public class MemberService {
 		member.setPw(encoder.encode(member.getPw()));
 		return mapper.regMember(member);
 	}
+
+	public int changeAdminYN(MemberDTO member) {
+		return mapper.changeAdminYN(member);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

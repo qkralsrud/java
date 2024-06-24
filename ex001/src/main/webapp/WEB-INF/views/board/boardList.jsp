@@ -34,14 +34,15 @@
 			function(item){
 	    		item.addEventListener('click', function(){
 		        	let board_no = item.dataset.no;
-		        	location.href="/boardDetail?board_no="+board_no;
+		        	location.href="/boardDetail?board_no="+board_no+"&pageNo=${map.pageDto.pageNo}";
 	    	})
 		});
 	})
 </script>
 </head>
 <body>
-
+pageDto : ${map.pageDto }
+<%@include file="../common/header.jsp" %>
 
 <main>
 <h2>자유게시판</h2>

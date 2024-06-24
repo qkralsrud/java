@@ -45,4 +45,8 @@ public class BoardService {
 		return mapper.boardDetail(board_no);
 		
 	}
+
+	public int boardDelete(BoardDTO board) {
+		return mapper.boardDelete(board);
+	}
 }

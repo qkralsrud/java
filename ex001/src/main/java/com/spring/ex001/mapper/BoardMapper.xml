@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- namespace : mapper interface의 패키지명+인터페이스명 -->
-<mapper namespace="com.spring.ex01.mapper.BoardMapper">
+<mapper namespace="com.spring.ex001.mapper.BoardMapper">
 	
 	<!-- id : 인터페이스의 메서드명 -->
 	<select id="getList">
@@ -19,9 +19,9 @@
 						                , to_char(created_time, 'yyyy-mm-dd')
 						                )  created_time 
 		                from board 
-		                
+		                where del_yn != 'Y'
 		               <if test="searchWord != '' and searchField != ''"> 
-				         where ${searchField} like '%'||#{searchWord}||'%'
+				          and ${searchField} like '%'||#{searchWord}||'%'
 				       </if>
 		                
 		                order by board_no desc

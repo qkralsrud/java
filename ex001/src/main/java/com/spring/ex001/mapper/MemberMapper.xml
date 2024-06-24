@@ -27,7 +27,9 @@
 	    			values (#{id}, #{pw}, #{name}, sysdate)
 	</insert>
 	
-	
+	<update id="updatePW">
+		update member set pw=${pw} where id=${id}
+	</update>
 	
 	
 	
