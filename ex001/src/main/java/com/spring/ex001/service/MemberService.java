@@ -87,7 +87,23 @@ public class MemberService {
 	public int changeAdminYN(MemberDTO member) {
 		return mapper.changeAdminYN(member);
 	}
+	public Map<String, String> findId(MemberDTO member) {
+		String id = mapper.findId(member);
+		System.out.println("member : " + member);
+		System.out.println("id : " + id);
+		// 키의 타입, 값의 타입
+		Map<String, String> map = new HashMap<String, String>();
+		if(id != null && !"".equals(id)) {
+			// 아이디가 존재하면 당신의 아이디는 .. 입니다
+			map.put("msg", "아이디는 " + id + "입니다.");
+		} else {
+			// 아니면 정보가 존재하지 않습니다.
+			map.put("msg", "아이디를 찾을수 없습니다.");
+		}
+		return map;
+	}
 }
+
 
 
 

@@ -8,7 +8,23 @@
 	
 	<!-- id : 인터페이스의 메서드명 -->
 	<select id="getList">
-		select *
+	<!-- 주로 XML 파일에서 스크립트 코드, SQL 쿼리, HTML 코드 등과 같이 구문 
+				분석기가 해석할 필요가 없는 텍스트 데이터를 포함할 때 유용하게 사용-->
+	
+		select board_no, '추천' board_type, title, user_id, counts,
+						        decode(to_char(created_time, 'yyyymmdd')
+						                , to_char(sysdate, 'yyyymmdd')
+						                , to_char(created_time, 'HH24:MI:SS')
+						                , to_char(created_time, 'yyyy-mm-dd')
+						                )  created_time
+		from (select board.* from board order by counts desc)
+		<![CDATA[  
+		where rownum <= 3
+		]]>
+		
+		union all 
+	
+		select board_no, board_type, title, user_id, counts, created_time
 		from ( 
 		        select rownum rn, t.* 
 		        from ( 

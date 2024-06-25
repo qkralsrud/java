@@ -11,5 +11,5 @@ public class MemberDTO {
 	private String admin_yn;
 	private String reg_date;
 	private String udt_date;
-	
+	private String email;
 }

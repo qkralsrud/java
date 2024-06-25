@@ -73,7 +73,18 @@ pageDto : ${map.pageDto }
 				요소선택.dataset.변수명
 			-->
 			<tr data-no="${board.board_no }">
-				<td>${board.board_no }</td>
+				<td>
+					<c:choose>
+						<c:when test="${board.board_type eq '추천'}">
+							추천
+						</c:when>
+						<c:otherwise>
+							${board.board_no }							
+						</c:otherwise>
+					</c:choose>
+				
+				
+				</td>
 				<!-- ${board.board_type } : 통합게시판용 컬럼 -->
 				<td>${board.title }</td>
 				<td>${board.user_id }</td>

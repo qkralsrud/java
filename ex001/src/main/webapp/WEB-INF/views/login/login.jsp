@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="/resources/css/login.css">
 	<!-- 외부 Script파일 연결-->
 	<script type="text/javascript" src="/resources/js/login.js"></script>
+	<script type="text/javascript" src="/resources/js/common.js"></script>
+	
+	
+	
 	
 <%-- JSP주석
 	String id = CookieManager.getCookieValue(request, "id");
@@ -27,7 +31,9 @@
   </head>
   <body class="d-flex align-items-center py-4 bg-body-tertiary">
   <main class="form-signin w-100 m-auto">
-    <form action="/loginAction" method="post">
+  
+  <!-- -----------------             로그인     ------------------------ -->
+    <form action="/loginAction" method="post" id="loginForm">
       <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
       <h1 class="h3 mb-3 fw-normal">영등포 도서관</h1>
 		${msg }
@@ -51,9 +57,76 @@
       <button class="btn btn-primary w-100 py-2" type="submit">로그인</button>
       <p></p>
       <button class="btn btn-secondary w-100 py-2" type="button" id="signupBtn">회원가입</button>
-      
+      <p class="text-center"> 
+      	  <a href = "javascript:fn_findId()">아이디찾기</a>
+      	  <a href = "javascript:fn_setPw()">비밀번호재설정</a>
+      </p>
       <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
     </form>
+    
+   <!-- -----------------             아이디찾기     ------------------------ --> 
+    <form action="/findId" method="post" id="findId" class="none">
+      <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+      <h1 class="h3 mb-3 fw-normal">영등포 도서관</h1>
+      	<!-- 아이디 찾기의 결과를 출력 -->
+		<p id=findIdMsgBox></p>
+      <div class="form-floating">
+        <input type="text" class="form-control" name="name" id="findId_name">
+        <label for="floatingInput">이름</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" name="email" id="findId_email">
+        <label for="floatingPassword">이메일</label>
+      </div>
+      <p></p>
+	  <p>
+      	<button class="btn btn-primary w-100 py-2" type="button" onClick="fn_findIdAction()">아이디 찾기</button>
+      </p>
+      
+      <p class="text-center"> 
+      	  <a href = "javascript:fn_login()">로그인</a>
+      	  <a href = "javascript:fn_setPw()">비밀번호재설정</a>
+      </p>
+      <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
+    </form>
+   <!-- -----------------             비밀번호 재설정     ------------------------ --> 
+    <form action="/findId" method="post" id="setPwForm" class="none">
+      <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+      <h1 class="h3 mb-3 fw-normal">영등포 도서관</h1>
+      	<!-- 아이디 찾기의 결과를 출력 -->
+		<p id=findIdMsgBox></p>
+      <div class="form-floating">
+        <input type="text" class="form-control" name="id" id="setPw_name">
+        <label for="floatingInput">아이디</label>
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" name="email" id="setPw_email">
+        <label for="floatingPassword">이메일</label>
+      </div>
+      <p></p>
+	  <p>
+      	<button class="btn btn-primary w-100 py-2" type="button" onClick="fn_setPwAction()">비밀번호 재설정</button>
+      </p>
+      <div id="setPwBox">
+      <p class="form-floating">
+      	<input type="text" class="form-control" name="pw" id="setPw">
+        <label for="setPw">비밀번호 재설정</label>
+      </p>
+      <p class="form-floating">
+      	<input type="text" class="form-control" name="pw_check" id="setPw_check">
+        <label for="setPw_check">비밀번호 확인</label>
+      </p>
+      <p>
+      	<button class="btn btn-primary w-100 py-2" type="button" onClick="fn_setPwAction()">비밀번호 저장</button>
+      </p>
+      </div>
+      <p class="text-center"> 
+      	  <a href = "javascript:fn_login()">로그인</a>
+      	  <a href = "javascript:fn_findId()">아이디찾기</a>
+      </p>
+      <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
+    </form> 
+    
   </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 

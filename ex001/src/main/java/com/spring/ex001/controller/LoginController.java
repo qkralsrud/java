@@ -132,4 +132,20 @@ public class LoginController {
 		// 메세지를 출력후 지정된 url로 이동(url이 없으면 뒤로가기)
 		return "/common/msgBox";
 	}
+	
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

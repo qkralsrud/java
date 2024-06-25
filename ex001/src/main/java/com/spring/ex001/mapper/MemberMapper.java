@@ -33,4 +33,6 @@ public interface MemberMapper {
 
 	@Update("update member set admin_yn=#{admin_yn} where id=#{id}")
 	int changeAdminYN(MemberDTO member);
+	
+	String findId(MemberDTO member);
 }

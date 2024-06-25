@@ -70,7 +70,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container"></div>
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
       <div class="col-md-3 mb-2 mb-md-0">
         <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
@@ -81,10 +81,11 @@
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
         <li><a href="/bookList" class="nav-link px-2">도서목록</a></li>
-        <li><a href="/memberList" class="nav-link px-2">회원목록</a></li>
+        <!-- 관리자 메뉴 -->
+        <c:if test="${memberDto.admin_yn eq 'Y'}">
+        	<li><a href="/memberList" class="nav-link px-2">회원목록</a></li>
+        </c:if>
         <li><a href="/boardList" class="nav-link px-2">게시판</a></li>
-        <li><a href="#" class="nav-link px-2">FAQs</a></li>
-        <li><a href="#" class="nav-link px-2">About</a></li>
       </ul>
 
       <div class="col-md-3 text-end">

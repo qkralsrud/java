@@ -94,6 +94,20 @@ public class RestLoginController {
 		
 		return new ResponseEntity<Map<String, Object>>(map, header, HttpStatus.OK);
 	}
+	
+	@PostMapping("/findId")
+	//@RequestBody 어노테이션은 JSON형식의 문자열을 전송할때만 사용
+	public ResponseEntity findId(@RequestBody MemberDTO member) {
+		System.out.println("member : " + member);
+		// 웹브라우저로 전달할 객체를 생성
+		HttpHeaders header = new HttpHeaders();
+		header.add("Content-Type", "application/json; charset=UTF-8");
+		
+		// 이름과 이메일주소로 id를 조회
+		Map<String, String> map = service.findId(member);
+		
+		return new ResponseEntity<Map<String, String>>(map, header, HttpStatus.OK);
+	}
 }
 
 

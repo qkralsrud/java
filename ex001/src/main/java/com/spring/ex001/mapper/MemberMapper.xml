@@ -27,10 +27,13 @@
 	    			values (#{id}, #{pw}, #{name}, sysdate)
 	</insert>
 	
+	
 	<update id="updatePW">
-		update member set pw=${pw} where id=${id}
+		update member set pw=#{pw} where id=#{id}
 	</update>
 	
-	
+	<select id="findId">
+		select id from member where name=#{name} and email = #{email}
+	</select>
 	
 </mapper>
